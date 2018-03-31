@@ -11,8 +11,6 @@ elif ! [[ $2 =~ $re ]] || [ $2 -le 0 ]; then
     echo "Num of count backup is not digit or it is 0 or less." 1>&2
     exit 1
    else 
-	echo start backup
-
 	if ! [ -d /tmp/backups/ ] ; then
 	mkdir /tmp/backups/
 	fi
