@@ -17,8 +17,7 @@ elif ! [[ $2 =~ $re ]] || [ $2 -le 0 ]; then
 
 	archname=$(echo $1 | sed -r 's/\//-/g' | cut -c 2-)
 	datetime=`date +%Y-%m-%d--%H%M%S`
-	echo $archname
-	tar -zcf /tmp/backups/"$archname""$datetime".tar.gz "$1"
+	tar -zcf /tmp/backups/"$archname""$datetime".tar.gz "$1" > /dev/null
 	archcount=$(ls -1 /tmp/backups/ | grep "$archname" | grep -v "$archname"- | grep -c "$archname")
 
 		if [ $archcount -gt $2 ] ; then
