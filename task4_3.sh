@@ -18,11 +18,11 @@ elif ! [[ $2 =~ $re ]] || [ $2 -le 0 ]; then
 	archname=$(echo $1 | sed -r 's/\//-/g' | cut -c 2-)
 	datetime=`date +%Y-%m-%d--%H%M%S`
 	tar -zcf /tmp/backups/"$archname""$datetime".tar.gz "$1" > /dev/null
-	archcount=$(ls -1 /tmp/backups/ | grep "$archname" | grep -v "$archname"- | grep -c "$archname")
+	archcount=$(ls -1 /tmp/backups/ | grep -c "$archname[0-9]*-[0-9]*-[0-9]*--[0-9]*" )
 
-		if [ $archcount -gt $2 ] ; then
-		let head="$archcount-$2"
-		ls -1 -d /tmp/backups/* | grep "$archname" | grep -v "$archname"- | head -$head | xargs -d '\n' rm
+	if [ $archcount -gt $2 ] ; then
+	let head="$archcount-$2"
+	ls -1 -d /tmp/backups/* | grep "$archname[0-9]*-[0-9]*-[0-9]*--[0-9]*" | head -$head | xargs -d '\n' rm
 		fi
 
   fi
