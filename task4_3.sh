@@ -4,7 +4,7 @@ re='^[0-9]+$'
 if [ "$#" -ne 2 ]; then
      echo "Illegal number of parameters." 1>&2
     exit 1	
-elif ! [ -d "$1" ] ; then
+elif ! [ -d "$1" ] && ! [ -f "$1" ]; then
      echo "directory not found" 1>&2
     exit 1
 elif ! [[ $2 =~ $re ]] || [ $2 -le 0 ]; then
